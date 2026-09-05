@@ -1,5 +1,7 @@
 import { requireAuth } from './auth.js';
 
+export { requireAuth };
+
 const PROTECTED_PAGES = ['input.html', 'display.html'];
 const AUTH_PAGE = 'index.html';
 
