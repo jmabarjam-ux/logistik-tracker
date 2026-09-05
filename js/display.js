@@ -38,6 +38,7 @@ async function init() {
     let deleteTargetId = null;
     let currentUser = null;
     let allData = [];
+    let searchInitialized = false;
 
     const { data: { user } } = await supabase.auth.getUser();
     currentUser = user;
@@ -64,7 +65,9 @@ async function init() {
     }
 
     function setupSearch() {
-        if (!searchInput) return;
+        if (!searchInput || searchInitialized) return;
+
+        searchInitialized = true;
         
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -108,7 +111,7 @@ async function init() {
                             <button class="btn btn-sm btn-secondary edit-btn" data-id="${item.id}" aria-label="Edit ${escapeHtml(item.nama_logistik)}">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                             </button>
-                            <button class="btn btn-sm btn-danger delete-btn" data-id="${item.id}" data-nama="${escapeHtml(item.nama_logistik)}" aria-label="Hapus ${escapeHtml(item.nama_logistik)}">
+                            <button class="btn btn-sm btn-danger delete-btn" data-id="${item.id}" data-nama="${encodeURIComponent(item.nama_logistik)}" aria-label="Hapus ${escapeHtml(item.nama_logistik)}">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                             </button>
                         ` : '<span class="text-muted">-</span>'}
@@ -133,7 +136,7 @@ async function init() {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const id = btn.dataset.id;
-                const nama = btn.dataset.nama;
+                const nama = decodeURIComponent(btn.dataset.nama);
                 openDeleteModal(id, nama);
             });
         });
@@ -159,7 +162,7 @@ async function init() {
                         <button class="btn btn-sm btn-secondary edit-btn" data-id="${item.id}" aria-label="Edit ${escapeHtml(item.nama_logistik)}">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                         </button>
-                        <button class="btn btn-sm btn-danger delete-btn" data-id="${item.id}" data-nama="${escapeHtml(item.nama_logistik)}" aria-label="Hapus ${escapeHtml(item.nama_logistik)}">
+                        <button class="btn btn-sm btn-danger delete-btn" data-id="${item.id}" data-nama="${encodeURIComponent(item.nama_logistik)}" aria-label="Hapus ${escapeHtml(item.nama_logistik)}">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                         </button>
                     ` : '<span class="text-muted">-</span>'}
@@ -365,8 +368,8 @@ async function init() {
             allData[index] = item;
         }
 
-        row.cells[1].textContent = escapeHtml(item.nama_logistik);
-        row.cells[2].textContent = escapeHtml(item.nopol_kendaraan);
+        row.cells[1].textContent = item.nama_logistik;
+        row.cells[2].textContent = item.nopol_kendaraan;
         row.cells[3].innerHTML = `<span class="grade-badge grade-${getGradeClass(item.ukuran_ayam)}">${escapeHtml(item.ukuran_ayam)}</span>`;
         row.cells[4].textContent = formatDate(item.created_at);
         row.style.animation = 'flash 0.5s ease';
