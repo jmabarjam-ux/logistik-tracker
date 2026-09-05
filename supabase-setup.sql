@@ -44,7 +44,7 @@ CREATE POLICY "Authenticated users can read" ON logistik_data
 -- Public monitor hanya bisa membaca data yang masih berada di antrean
 CREATE POLICY "Public monitor can read queue" ON logistik_data
     FOR SELECT TO anon
-    USING (status_bongkar = 'antri');
+    USING (status_bongkar IN ('antri', 'bongkar'));
 
 -- 5. Policy: Users can update their own data (optional)
 CREATE POLICY "Users can update own data" ON logistik_data

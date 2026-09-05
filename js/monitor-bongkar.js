@@ -11,7 +11,7 @@ async function loadQueue() {
     const { data, error } = await supabase
         .from('logistik_data')
         .select('id, kode_logistik, nama_logistik, nopol_kendaraan, ukuran_ayam, created_at, status_bongkar')
-        .eq('status_bongkar', 'antri')
+        .in('status_bongkar', ['antri', 'bongkar'])
         .order('created_at', { ascending: true });
 
     if (error) throw error;
@@ -19,8 +19,12 @@ async function loadQueue() {
 }
 
 function renderQueue(items) {
-    const activeItems = items.slice(0, 2);
-    const waitingItems = items.slice(2);
+    const activeItems = items
+        .filter(item => item.status_bongkar === 'bongkar')
+        .concat(items.filter(item => item.status_bongkar === 'antri'))
+        .slice(0, 2);
+    const activeIds = new Set(activeItems.map(item => item.id));
+    const waitingItems = items.filter(item => !activeIds.has(item.id));
 
     activeTrucks.innerHTML = activeItems.length
         ? activeItems.map((item, index) => renderActiveTruck(item, index)).join('')
@@ -37,7 +41,7 @@ function renderActiveTruck(item, index) {
         <article class="monitor-truck-card" style="--card-delay: ${index * 0.1}s">
             <div class="truck-card-topline">
                 <span class="truck-order">0${index + 1}</span>
-                <span class="truck-status">Menunggu bongkar</span>
+                <span class="truck-status">${item.status_bongkar === 'bongkar' ? 'Sedang bongkar' : 'Siap bongkar'}</span>
             </div>
             <div class="truck-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7zM6.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M14 13h7"/></svg>

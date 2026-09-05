@@ -27,7 +27,7 @@ CREATE POLICY "Public monitor can read queue"
     ON public.logistik_data
     FOR SELECT
     TO anon
-    USING (status_bongkar = 'antri');
+    USING (status_bongkar IN ('antri', 'bongkar'));
 
 CREATE INDEX IF NOT EXISTS idx_logistik_data_status_bongkar_created_at
     ON public.logistik_data(status_bongkar, created_at);
