@@ -7,52 +7,206 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="app-header">
-        <h1>Input Data Logistik</h1>
-        <div class="header-actions">
-            <span id="user-email" class="user-email"></span>
-            <button id="logout-btn" class="btn btn-secondary btn-sm">Logout</button>
-            <a href="display.html" class="btn btn-primary btn-sm">Lihat Data</a>
-        </div>
-    </header>
-    <main class="container">
-        <div class="card">
-            <form id="input-form" class="input-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="kode-logistik">Kode Logistik <span class="required">*</span></label>
-                        <input type="text" id="kode-logistik" name="kode_logistik" required placeholder="Contoh: LG001">
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <span>Logistik Tracker</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="input.html" class="nav-item active" data-page="input">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <span>Input Data</span>
+                </a>
+                <a href="display.html" class="nav-item" data-page="display">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                    <span>Lihat Data</span>
+                    <span class="nav-badge">Real-time</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">User</span>
+                        <span class="user-email" id="user-email"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="nama-logistik">Nama Logistik <span class="required">*</span></label>
-                        <input type="text" id="nama-logistik" name="nama_logistik" required placeholder="Contoh: CV. Jaya Abadi">
+                </div>
+                <button id="logout-btn" class="btn btn-secondary btn-sm btn-block">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <div class="top-bar-title">
+                    <h1>Input Data Logistik</h1>
+                    <p class="subtitle">Tambah data pengiriman ayam baru</p>
+                </div>
+                <div class="top-bar-actions">
+                    <a href="display.html" class="btn btn-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                        Lihat Data
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="form-section">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h2>Form Input Data</h2>
+                            <p>Isi semua field yang wajib diisi (*)</p>
+                        </div>
+                        <form id="input-form" class="input-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="kode-logistik">
+                                        Kode Logistik <span class="required">*</span>
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                        </svg>
+                                        <input type="text" id="kode-logistik" name="kode_logistik" required placeholder="Contoh: LG001" autocomplete="off">
+                                    </div>
+                                    <span class="field-hint">Kode unik pengiriman (misal: LG001, LG002)</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama-logistik">
+                                        Nama Logistik <span class="required">*</span>
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="12" cy="7" r="4"/>
+                                        </svg>
+                                        <input type="text" id="nama-logistik" name="nama_logistik" required placeholder="Contoh: CV. Jaya Abadi" autocomplete="off">
+                                    </div>
+                                    <span class="field-hint">Nama perusahaan/perusahaan pengiriman</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nopol-kendaraan">
+                                    No. Polisi Kendaraan <span class="required">*</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+                                        <circle cx="7" cy="17" r="2"/>
+                                        <circle cx="17" cy="17" r="2"/>
+                                    </svg>
+                                    <input type="text" id="nopol-kendaraan" name="nopol_kendaraan" required placeholder="Contoh: B 1234 ABC" style="text-transform: uppercase;" autocomplete="off">
+                                </div>
+                                <span class="field-hint">Format: B 1234 ABC (akan diubah ke uppercase otomatis)</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="ukuran-ayam">
+                                    Ukuran Ayam <span class="required">*</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <svg class="select-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"/>
+                                    </svg>
+                                    <select id="ukuran-ayam" name="ukuran_ayam" required>
+                                        <option value="">-- Pilih Grade --</option>
+                                        <option value="Grade 1 (1.2-1.5kg)" data-weight="1.2-1.5 kg">Grade 1 (1.2-1.5 kg)</option>
+                                        <option value="Grade 2 (1.5-1.8kg)" data-weight="1.5-1.8 kg">Grade 2 (1.5-1.8 kg)</option>
+                                        <option value="Grade 3 (1.8-2kg)" data-weight="1.8-2 kg">Grade 3 (1.8-2 kg)</span>
+                                    </select>
+                                </div>
+                                <span class="field-hint">Grade 1: 1.2-1.5 kg | Grade 2: 1.5-1.8 kg | Grade 3: 1.8-2 kg</span>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="submit-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                        <polyline points="17 21 17 13 7 13 7 21"/>
+                                        <polyline points="7 3 7 8 15 8"/>
+                                    </svg>
+                                    <span>Simpan Data</span>
+                                </button>
+                                <button type="reset" class="btn btn-secondary" id="reset-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="1 4 1 10 7 10"/>
+                                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                                    </svg>
+                                    <span>Reset</span>
+                                </button>
+                            </div>
+                        </form>
+                        <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="nopol-kendaraan">No. Polisi Kendaraan <span class="required">*</span></label>
-                    <input type="text" id="nopol-kendaraan" name="nopol_kendaraan" required placeholder="Contoh: B 1234 ABC" style="text-transform: uppercase;">
+
+                <!-- Recent Data Section -->
+                <div class="recent-section">
+                    <div class="card recent-card">
+                        <div class="card-header">
+                            <h2>Data Terakhir Dimasukkan</h2>
+                            <span class="recent-count" id="recent-count">0 data</span>
+                        </div>
+                        <div id="recent-list" class="recent-list">
+                            <div class="empty-state" id="empty-recent">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                </svg>
+                                <p>Belum ada data yang dimasukkan</p>
+                                <span>Data akan muncul di sini setelah menyimpan</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="ukuran-ayam">Ukuran Ayam <span class="required">*</span></label>
-                    <select id="ukuran-ayam" name="ukuran_ayam" required>
-                        <option value="">-- Pilih Grade --</option>
-                        <option value="Grade 1 (1.2-1.5kg)">Grade 1 (1.2-1.5 kg)</option>
-                        <option value="Grade 2 (1.5-1.8kg)">Grade 2 (1.5-1.8 kg)</option>
-                        <option value="Grade 3 (1.8-2kg)">Grade 3 (1.8-2 kg)</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Simpan Data</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
-            </form>
-            <div id="form-message" class="form-message"></div>
-        </div>
-        <div class="card recent-data">
-            <h3>Data Terakhir Dimasukkan</h3>
-            <div id="recent-list" class="recent-list"></div>
-        </div>
-    </main>
+            </div>
+        </main>
+    </div>
+
     <script type="module" src="js/input.js"></script>
 </body>
 </html>
