@@ -175,8 +175,19 @@ a:hover {
     color: #664212;
 }
 
-/* Empty state */
-.empty-state {
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.sidebar-overlay.open {
+    display: block;
+}
+
     text-align: center;
     padding: 2rem 1rem;
     color: #6c757d;
