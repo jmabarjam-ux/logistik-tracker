@@ -1,0 +1,14 @@
+{
+  "name": "logistik-tracker",
+  "version": "1.0.0",
+  "description": "Aplikasi pencatatan data logistik ayam dengan Supabase",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000"
+  },
+  "keywords": ["logistik", "supabase", "github-pages"],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

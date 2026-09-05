@@ -1,5 +1,6 @@
 // Supabase Configuration
-// Ganti dengan credentials project Supabase Anda
+// Placeholders yang akan diganti otomatis oleh GitHub Actions saat deploy
+// Untuk development local, ganti manual atau buat file .env.local
 const SUPABASE_URL = 'https://your-project.supabase.co';
 const SUPABASE_ANON_KEY = 'your-anon-key';
 
