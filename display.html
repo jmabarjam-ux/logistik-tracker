@@ -4,48 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Logistik - Logistik Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="table-header">
-                <h3>Daftar Data Logistik</h3>
-            </div>
-            <div class="table-toolbar">
-                <div class="search-box">
-                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    <input type="search" id="search-input" placeholder="Cari nama logistik, no polisi, kode..." aria-label="Cari data">
+    <div class="app-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <span>Logistik Tracker</span>
                 </div>
-                <div id="connection-status" class="connection-status"></div>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Tutup menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
             </div>
-            <div class="table-responsive">
-                <table id="data-table" class="data-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Logistik</th>
-                            <th>No. Polisi</th>
-                            <th>Ukuran Ayam</th>
-                            <th>Waktu Input</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                    </tbody>
-                </table>
+            <nav class="sidebar-nav">
+                <a href="input.html" class="nav-item" data-page="input">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span>Input Data</span>
+                </a>
+                <a href="display.html" class="nav-item active" data-page="display">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                    <span>Lihat Data</span>
+                    <span class="nav-badge">Live</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">User</span>
+                        <span class="user-email" id="user-email"></span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="btn btn-secondary btn-sm btn-block">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Logout
+                </button>
             </div>
-            <div id="empty-state" class="empty-state" style="display: none;">
-                <p>Belum ada data. <a href="input.html">Tambah data pertama</a></p>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <div class="top-bar-title">
+                    <h1>Data Logistik</h1>
+                    <p class="subtitle">Pantau seluruh pengiriman secara real-time</p>
+                </div>
+                <div class="top-bar-actions">
+                    <a href="input.html" class="btn btn-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Input Data
+                    </a>
+                </div>
+            </header>
+
+            <div class="container">
+                <section class="card" aria-labelledby="data-heading">
+                    <div class="table-header">
+                        <div>
+                            <h3 id="data-heading">Daftar pengiriman</h3>
+                            <p class="subtitle">Data terbaru tampil otomatis saat ada perubahan.</p>
+                        </div>
+                        <div id="connection-status" class="connection-status connecting">Menghubungkan...</div>
+                    </div>
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="search" id="search-input" placeholder="Cari nama, kode, atau nomor polisi..." aria-label="Cari data logistik">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="data-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Logistik</th>
+                                    <th>No. Polisi</th>
+                                    <th>Ukuran Ayam</th>
+                                    <th>Waktu Input</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                    </div>
+                    <div id="empty-state" class="empty-state" style="display: none;">
+                        <p>Belum ada data. <a href="input.html">Tambah data pertama</a></p>
+                    </div>
+                    <div id="loading-state" class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Memuat data...</p>
+                    </div>
+                </section>
             </div>
-            <div id="loading-state" class="loading-state">
-                <div class="spinner"></div>
-                <p>Memuat data...</p>
-            </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Edit Modal -->
     <div id="edit-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -56,19 +144,19 @@
             <form id="edit-form" class="modal-form">
                 <input type="hidden" id="edit-id" name="id">
                 <div class="form-group">
-                    <label for="edit-kode-logistik">Kode Logistik <span class="required">*</span></label>
+                    <label for="edit-kode-logistik">Kode Logistik</label>
                     <input type="text" id="edit-kode-logistik" name="kode_logistik" required>
                 </div>
                 <div class="form-group">
-                    <label for="edit-nama-logistik">Nama Logistik <span class="required">*</span></label>
+                    <label for="edit-nama-logistik">Nama Logistik</label>
                     <input type="text" id="edit-nama-logistik" name="nama_logistik" required>
                 </div>
                 <div class="form-group">
-                    <label for="edit-nopol-kendaraan">No. Polisi Kendaraan <span class="required">*</span></label>
-                    <input type="text" id="edit-nopol-kendaraan" name="nopol_kendaraan" required style="text-transform: uppercase;">
+                    <label for="edit-nopol-kendaraan">No. Polisi Kendaraan</label>
+                    <input type="text" id="edit-nopol-kendaraan" name="nopol_kendaraan" required>
                 </div>
                 <div class="form-group">
-                    <label for="edit-ukuran-ayam">Ukuran Ayam <span class="required">*</span></label>
+                    <label for="edit-ukuran-ayam">Ukuran Ayam</label>
                     <select id="edit-ukuran-ayam" name="ukuran_ayam" required>
                         <option value="Grade 1 (1.2-1.5kg)">Grade 1 (1.2-1.5 kg)</option>
                         <option value="Grade 2 (1.5-1.8kg)">Grade 2 (1.5-1.8 kg)</option>
@@ -84,7 +172,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="delete-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
         <div class="modal-overlay"></div>
         <div class="modal-content modal-sm">

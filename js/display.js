@@ -1,5 +1,5 @@
 import { supabase } from './supabase-client.js';
-import { requireAuth, updateUserEmailDisplay, setupLogout } from './auth.js';
+import { requireAuth, updateUserEmailDisplay, setupLogout, getUser } from './auth.js';
 
 async function init() {
     const authorized = await requireAuth('index.html');
@@ -7,6 +7,16 @@ async function init() {
 
     updateUserEmailDisplay();
     setupLogout();
+    setupSidebar();
+
+    const user = await getUser();
+    if (user) {
+        const name = user.user_metadata?.name || user.email.split('@')[0];
+        const nameEl = document.getElementById('user-name');
+        const avatarEl = document.getElementById('user-avatar');
+        if (nameEl) nameEl.textContent = name;
+        if (avatarEl) avatarEl.textContent = name.charAt(0).toUpperCase();
+    }
 
     const tableBody = document.getElementById('table-body');
     const emptyState = document.getElementById('empty-state');
@@ -389,6 +399,29 @@ async function init() {
             connectionStatus.classList.add('connecting');
             connectionStatus.textContent = 'Menghubungkan...';
         }
+    }
+
+    function setupSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+
+        const closeSidebar = () => {
+            sidebar?.classList.remove('open');
+            overlay?.classList.remove('open');
+        };
+
+        menuToggle?.addEventListener('click', () => {
+            sidebar?.classList.add('open');
+            overlay?.classList.add('open');
+        });
+        sidebarToggle?.addEventListener('click', closeSidebar);
+        overlay?.addEventListener('click', closeSidebar);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeSidebar();
+        });
     }
 
     function showError(message) {
