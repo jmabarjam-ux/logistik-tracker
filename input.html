@@ -17,7 +17,7 @@
                         <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                         <line x1="12" y1="22.08" x2="12" y2="12"/>
                     </svg>
-                    <span>Logistik Tracker</span>
+                    <span>Monitoring Truck</span>
                 </div>
                 <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -44,7 +44,7 @@
                         <line x1="9" y1="21" x2="9" y2="9"/>
                     </svg>
                     <span>Lihat Data</span>
-                    <span class="nav-badge">Real-time</span>
+                    <span class="nav-badge">Live</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -79,8 +79,8 @@
                     </svg>
                 </button>
                 <div class="top-bar-title">
-                    <h1>Input Data Logistik</h1>
-                    <p class="subtitle">Tambah data pengiriman ayam baru</p>
+                    <h1>Input Pengiriman</h1>
+                    <p class="subtitle">Catat muatan ayam dan kendaraan yang berangkat</p>
                 </div>
                 <div class="top-bar-actions">
                     <a href="display.html" class="btn btn-primary btn-sm">
@@ -95,12 +95,16 @@
             </header>
 
             <!-- Page Content -->
-            <div class="page-content">
+            <div class="page-content input-workspace">
                 <div class="form-section slide-up">
                     <div class="card form-card">
                         <div class="card-header-modern">
-                            <h2>Input Data Logistik</h2>
-                            <p>Lengkapi formulir di bawah untuk mencatat pengiriman baru</p>
+                            <div>
+                                <p class="section-kicker">Pencatatan baru</p>
+                                <h2>Detail pengiriman</h2>
+                                <p>Lengkapi informasi muatan sebelum kendaraan berangkat.</p>
+                            </div>
+                            <span class="form-step">01 / 01</span>
                         </div>
                         <form id="input-form" class="input-form-modern" novalidate>
                             <div class="form-grid">
@@ -126,9 +130,12 @@
                                     <option value="Grade 3 (1.8-2kg)">Grade 3 (1.8-2 kg)</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit-btn">
-                                <span>Simpan Data</span>
-                            </button>
+                            <div class="form-actions-modern">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                                    <span>Simpan Data</span>
+                                </button>
+                                <button type="reset" class="btn btn-secondary btn-lg" id="reset-btn">Reset</button>
+                            </div>
                         </form>
                         <div id="form-message" class="form-message"></div>
                     </div>

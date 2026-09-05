@@ -625,8 +625,15 @@ select {
     box-shadow: var(--shadow-sm);
 }
 
-.form-section,
-.recent-section { max-width: 850px; }
+.input-workspace {
+    align-items: start;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+}
+
+.input-workspace .form-section,
+.input-workspace .recent-section { max-width: none; }
 .form-card,
 .recent-card { padding: 30px; }
 .card-header,
@@ -639,13 +646,33 @@ select {
 }
 
 .card-header-modern { margin-bottom: 26px; }
+.section-kicker {
+    color: var(--primary);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
 .card-header h2,
 .card-header-modern h2,
 .table-header h3 { font-size: 1.06rem; letter-spacing: -0.02em; }
 .card-header-modern p { color: var(--text-muted); font-size: 0.84rem; margin-top: 5px; }
+.form-step {
+    background: var(--primary-soft);
+    border-radius: 999px;
+    color: var(--primary);
+    flex: 0 0 auto;
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 7px 10px;
+}
 .form-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .input-form-modern .form-group { margin-bottom: 18px; }
 .input-form-modern .btn { margin-top: 4px; }
+.form-actions-modern { display: flex; gap: 10px; margin-top: 5px; }
+.form-actions-modern .btn-primary { flex: 1; }
 
 .form-message {
     border-radius: 10px;
@@ -658,7 +685,8 @@ select {
 .form-message.success { background: #e8f7f1; border: 1px solid #b8e8d7; color: #0f6e55; }
 .form-message.error { background: #fff0f1; border: 1px solid #f2c3c9; color: #a83241; }
 
-.recent-section { margin-top: 18px; }
+.recent-section { margin-top: 0; }
+.input-workspace .recent-card { position: sticky; top: 116px; }
 .recent-count {
     background: var(--primary-soft);
     border-radius: 999px;
@@ -780,6 +808,9 @@ select {
     .top-bar-actions .btn { font-size: 0; gap: 0; min-height: 38px; padding: 9px; }
     .top-bar-actions .btn svg { margin: 0; }
     .page-content { padding: 18px 16px 36px; }
+    .input-workspace { display: block; }
+    .input-workspace .recent-section { margin-top: 18px; }
+    .input-workspace .recent-card { position: static; }
     .form-card, .recent-card { padding: 21px 17px; }
     .table-toolbar { align-items: stretch; flex-direction: column; }
     .search-box { max-width: none; }
@@ -787,6 +818,7 @@ select {
     .container > .card { padding: 20px 16px; }
     .table-header { align-items: flex-start; flex-direction: column; }
     .recent-item-time { display: none; }
+    .form-actions-modern { flex-direction: column; }
     .modal-content { padding: 22px 18px; }
     .modal-actions { flex-direction: column-reverse; }
     .modal-actions .btn { width: 100%; }
