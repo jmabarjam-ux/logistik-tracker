@@ -11,7 +11,36 @@
 </head>
 <body>
     <main class="auth-container">
-        <section class="auth-card" aria-labelledby="login-title">
+        <section class="auth-shell" aria-label="Akses Monitoring Truck">
+            <div class="auth-visual">
+                <div class="visual-topline">
+                    <span class="visual-pulse"></span>
+                    Sistem operasional aktif
+                </div>
+                <div class="visual-copy">
+                    <p class="auth-eyebrow">Dashboard armada</p>
+                    <h1>Monitoring<br><span>Truck.</span></h1>
+                    <p>Pantau setiap perjalanan, catat pengiriman, dan jaga ritme operasional tetap bergerak.</p>
+                </div>
+                <div class="route-visual" aria-hidden="true">
+                    <span class="route-point route-point-start"></span>
+                    <span class="route-line"></span>
+                    <span class="route-point route-point-end"></span>
+                    <span class="route-truck">TRUCK 01</span>
+                </div>
+                <div class="visual-stats">
+                    <div>
+                        <strong>24/7</strong>
+                        <span>Monitoring</span>
+                    </div>
+                    <div>
+                        <strong>Live</strong>
+                        <span>Data update</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-card">
             <div class="auth-brand">
                 <span class="brand-mark" aria-hidden="true">M</span>
                 <span>MONITORING TRUCK</span>
@@ -37,6 +66,7 @@
             </form>
             <div id="auth-message" class="form-message" role="alert" aria-live="polite"></div>
             <p class="auth-hint">Akun admin: <strong>admin</strong> / <strong>admin123</strong></p>
+            </div>
         </section>
     </main>
     <script type="module" src="js/login.js"></script>

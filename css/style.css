@@ -114,6 +114,11 @@ select {
     to { opacity: 0; transform: translateX(12px); }
 }
 
+@keyframes route-flow {
+    from { transform: translateX(-18px); }
+    to { transform: translateX(178px); }
+}
+
 .fade-in { animation: fade-in 0.45s ease both; }
 .slide-up { animation: slide-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
@@ -131,15 +136,143 @@ select {
     padding: 24px;
 }
 
-.auth-card {
+.auth-shell {
     animation: float-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 22px;
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
     box-shadow: var(--shadow-lg);
-    max-width: 440px;
-    padding: 44px;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.92fr) minmax(360px, 1fr);
+    max-width: 960px;
+    overflow: hidden;
     width: 100%;
+}
+
+.auth-visual {
+    background:
+        linear-gradient(145deg, rgba(36, 87, 214, 0.92), rgba(23, 60, 155, 0.98)),
+        #173c9b;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 570px;
+    overflow: hidden;
+    padding: 42px;
+    position: relative;
+}
+
+.auth-visual::before,
+.auth-visual::after {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    content: '';
+    height: 390px;
+    position: absolute;
+    right: -170px;
+    top: -130px;
+    width: 390px;
+}
+
+.auth-visual::after {
+    height: 260px;
+    right: -94px;
+    top: -64px;
+    width: 260px;
+}
+
+.visual-topline {
+    align-items: center;
+    color: #b9cbf5;
+    display: flex;
+    font-size: 0.7rem;
+    font-weight: 700;
+    gap: 8px;
+    letter-spacing: 0.08em;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.visual-pulse {
+    background: #7de0ae;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(125, 224, 174, 0.13);
+    height: 8px;
+    width: 8px;
+}
+
+.visual-copy {
+    max-width: 330px;
+    position: relative;
+    z-index: 1;
+}
+
+.visual-copy .auth-eyebrow { color: #a9c1fa; margin-bottom: 16px; }
+.visual-copy h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.07em; line-height: 0.95; }
+.visual-copy h1 span { color: #ffc66e; }
+.visual-copy > p:last-child { color: #c1d0ed; font-size: 0.92rem; line-height: 1.7; margin-top: 22px; max-width: 285px; }
+
+.route-visual {
+    align-items: center;
+    display: flex;
+    gap: 0;
+    height: 30px;
+    position: relative;
+    width: 235px;
+    z-index: 1;
+}
+
+.route-line {
+    border-top: 1px dashed rgba(255, 255, 255, 0.45);
+    width: 200px;
+}
+
+.route-point {
+    background: #ffc66e;
+    border: 4px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    height: 16px;
+    position: absolute;
+    width: 16px;
+    z-index: 2;
+}
+
+.route-point-start { left: 0; }
+.route-point-end { right: 0; }
+.route-truck {
+    animation: route-flow 3.2s ease-in-out infinite alternate;
+    background: #fff;
+    border-radius: 5px;
+    color: var(--primary-dark);
+    font-size: 0.55rem;
+    font-weight: 800;
+    left: 22px;
+    padding: 5px 6px;
+    position: absolute;
+    top: 0;
+}
+
+.visual-stats {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    gap: 42px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.visual-stats strong,
+.visual-stats span { display: block; }
+.visual-stats strong { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; }
+.visual-stats span { color: #a9bce0; font-size: 0.68rem; margin-top: 3px; }
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.94);
+    align-self: stretch;
+    padding: 44px;
+    width: auto;
 }
 
 .auth-brand {
@@ -599,7 +732,14 @@ select {
 
 @media (max-width: 640px) {
     .auth-container { padding: 16px; }
-    .auth-card { border-radius: 18px; padding: 30px 22px; }
+    .auth-shell { display: block; }
+    .auth-visual { min-height: 315px; padding: 28px 24px; }
+    .visual-copy { margin-top: 34px; }
+    .visual-copy h1 { font-size: 2.7rem; }
+    .visual-copy > p:last-child { display: none; }
+    .route-visual { margin-top: 24px; }
+    .visual-stats { margin-top: 24px; }
+    .auth-card { padding: 30px 22px; }
     .auth-header { margin: 34px 0 25px; }
     .form-grid { grid-template-columns: 1fr; gap: 0; }
     .top-bar { align-items: flex-start; min-height: 80px; padding: 15px 16px; }
