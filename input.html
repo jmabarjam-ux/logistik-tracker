@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Data - Logistik Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Input Data Logistik</h1>
+        <div class="header-actions">
+            <span id="user-email" class="user-email"></span>
+            <button id="logout-btn" class="btn btn-secondary btn-sm">Logout</button>
+            <a href="display.html" class="btn btn-primary btn-sm">Lihat Data</a>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card">
+            <form id="input-form" class="input-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kode-logistik">Kode Logistik <span class="required">*</span></label>
+                        <input type="text" id="kode-logistik" name="kode_logistik" required placeholder="Contoh: LG001">
+                    </div>
+                    <div class="form-group">
+                        <label for="nama-logistik">Nama Logistik <span class="required">*</span></label>
+                        <input type="text" id="nama-logistik" name="nama_logistik" required placeholder="Contoh: CV. Jaya Abadi">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nopol-kendaraan">No. Polisi Kendaraan <span class="required">*</span></label>
+                    <input type="text" id="nopol-kendaraan" name="nopol_kendaraan" required placeholder="Contoh: B 1234 ABC" style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                    <label for="ukuran-ayam">Ukuran Ayam <span class="required">*</span></label>
+                    <select id="ukuran-ayam" name="ukuran_ayam" required>
+                        <option value="">-- Pilih Grade --</option>
+                        <option value="Grade 1 (1.2-1.5kg)">Grade 1 (1.2-1.5 kg)</option>
+                        <option value="Grade 2 (1.5-1.8kg)">Grade 2 (1.5-1.8 kg)</option>
+                        <option value="Grade 3 (1.8-2kg)">Grade 3 (1.8-2 kg)</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+            <div id="form-message" class="form-message"></div>
+        </div>
+        <div class="card recent-data">
+            <h3>Data Terakhir Dimasukkan</h3>
+            <div id="recent-list" class="recent-list"></div>
+        </div>
+    </main>
+    <script type="module" src="js/input.js"></script>
+</body>
+</html>

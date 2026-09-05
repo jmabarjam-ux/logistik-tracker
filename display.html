@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logistik - Logistik Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Data Logistik</h1>
+        <div class="header-actions">
+            <span id="user-email" class="user-email"></span>
+            <button id="logout-btn" class="btn btn-secondary btn-sm">Logout</button>
+            <a href="input.html" class="btn btn-primary btn-sm">Input Data</a>
+        </div>
+    </header>
+    <main class="container">
+        <div class="card">
+            <div class="table-header">
+                <h3>Daftar Data Logistik (Real-time)</h3>
+                <span id="connection-status" class="connection-status disconnected">Menghubungkan...</span>
+            </div>
+            <div class="table-responsive">
+                <table id="data-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Logistik</th>
+                            <th>No. Polisi</th>
+                            <th>Ukuran Ayam</th>
+                            <th>Waktu Input</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <p>Belum ada data. <a href="input.html">Tambah data pertama</a></p>
+            </div>
+            <div id="loading-state" class="loading-state">
+                <div class="spinner"></div>
+                <p>Memuat data...</p>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="js/display.js"></script>
+</body>
+</html>
