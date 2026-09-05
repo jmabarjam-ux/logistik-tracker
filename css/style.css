@@ -886,6 +886,10 @@ select {
 .monitor-message.error { color: var(--danger); display: block; }
 .monitor-updated { color: var(--text-muted); font-size: 0.72rem; margin-top: 18px; text-align: center; }
 
+.record-container { padding-top: 34px; }
+.record-card { animation: slide-up 0.55s ease both; padding: 30px; }
+.record-card .table-toolbar { margin-bottom: 4px; }
+
 @media (max-width: 900px) {
     .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
     .sidebar.open { transform: translateX(0); }

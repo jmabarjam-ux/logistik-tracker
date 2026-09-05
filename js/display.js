@@ -48,6 +48,7 @@ async function init() {
             const { data, error } = await supabase
                 .from('logistik_data')
                 .select('id, kode_logistik, nama_logistik, nopol_kendaraan, ukuran_ayam, created_at, created_by')
+                .in('status_bongkar', ['antri', 'bongkar'])
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
@@ -335,6 +336,11 @@ async function init() {
     }
 
     function updateRow(item) {
+        if (item.status_bongkar === 'selesai') {
+            removeRow(item.id);
+            return;
+        }
+
         const index = allData.findIndex(d => d.id === item.id);
         if (index !== -1) {
             allData[index] = item;

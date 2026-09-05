@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Bongkar - Monitoring Truck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo"><span class="brand-mark">M</span><span>Monitoring Truck</span></div>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Tutup menu">&times;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="input.html" class="nav-item">Input Data</a>
+                <a href="display.html" class="nav-item">Data Aktif</a>
+                <a href="record%20bongkar.html" class="nav-item active">Riwayat Bongkar</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info"><div class="user-avatar" id="user-avatar">U</div><div class="user-details"><span class="user-name" id="user-name">User</span><span class="user-email" id="user-email"></span></div></div>
+                <button id="logout-btn" class="btn btn-secondary btn-sm btn-block">Logout</button>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <main class="main-content">
+            <header class="top-bar">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">☰</button>
+                <div class="top-bar-title"><h1>Riwayat Bongkar</h1><p class="subtitle">Record truk yang sudah selesai dibongkar</p></div>
+                <div class="top-bar-actions"><a href="display.html" class="btn btn-primary btn-sm">Data Aktif</a></div>
+            </header>
+            <div class="container record-container">
+                <section class="display-overview" aria-label="Ringkasan riwayat">
+                    <div class="display-intro"><p class="section-kicker">Completed archive</p><h2>Hasil pembongkaran</h2><p>Semua truk yang sudah selesai tetap tersimpan sebagai record.</p></div>
+                    <div class="metric-card metric-card-accent"><span class="metric-label">Total selesai</span><strong id="record-count">0</strong><span class="metric-meta">Semua waktu</span></div>
+                </section>
+                <section class="card record-card">
+                    <div class="table-toolbar"><div class="search-box"><input type="search" id="record-search" placeholder="Cari ekspedisi, kode, atau nopol..." aria-label="Cari riwayat bongkar"></div></div>
+                    <div class="table-responsive"><table class="data-table"><thead><tr><th>No</th><th>Ekspedisi</th><th>No. Polisi</th><th>Ukuran Ayam</th><th>Selesai Pada</th></tr></thead><tbody id="record-body"></tbody></table></div>
+                    <div id="record-empty" class="empty-state" style="display:none">Belum ada record bongkar.</div>
+                    <div id="record-loading" class="loading-state"><div class="spinner"></div><p>Memuat record...</p></div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/record-bongkar.js"></script>
+</body>
+</html>

@@ -35,6 +35,8 @@ Status antrean dapat diubah oleh user login melalui halaman **Data Pengiriman**:
 - `bongkar` - sedang dibongkar
 - `selesai` - sudah selesai dan keluar dari antrean publik
 
+Truk berstatus `selesai` tidak dihapus dari database. Truk tersebut berpindah dari halaman Data Aktif ke halaman `record bongkar.html` sebagai riwayat pembongkaran.
+
 Untuk mengisi 10 data contoh, jalankan script `seed-monitor-data.sql` sekali di Supabase SQL Editor.
 
 ## Konfigurasi Project
