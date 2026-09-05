@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Logistik - Logistik Tracker</title>
+    <title>Monitoring Truck - Data Pengiriman</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@
                     </svg>
                 </button>
                 <div class="top-bar-title">
-                    <h1>Data Logistik</h1>
+                    <h1>Data Pengiriman</h1>
                     <p class="subtitle">Pantau seluruh pengiriman secara real-time</p>
                 </div>
                 <div class="top-bar-actions">
@@ -92,7 +92,24 @@
                 </div>
             </header>
 
-            <div class="container">
+            <div class="container display-container">
+                <section class="display-overview" aria-label="Ringkasan pengiriman">
+                    <div class="display-intro">
+                        <p class="section-kicker">Operations overview</p>
+                        <h2>Pantau armada hari ini</h2>
+                        <p>Semua catatan pengiriman tersinkron otomatis saat aktivitas baru masuk.</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Total pengiriman</span>
+                        <strong id="total-count">0</strong>
+                        <span class="metric-meta">Semua waktu</span>
+                    </div>
+                    <div class="metric-card metric-card-accent">
+                        <span class="metric-label">Input hari ini</span>
+                        <strong id="today-count">0</strong>
+                        <span class="metric-meta">Update terbaru</span>
+                    </div>
+                </section>
                 <section class="card" aria-labelledby="data-heading">
                     <div class="table-header">
                         <div>

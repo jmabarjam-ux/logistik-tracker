@@ -727,6 +727,32 @@ select {
 
 /* Data page */
 .container { margin: 0 auto; max-width: 1240px; padding: 42px; }
+.display-container { padding-top: 34px; }
+.display-overview {
+    align-items: stretch;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: minmax(260px, 1fr) repeat(2, minmax(150px, 0.35fr));
+    margin-bottom: 18px;
+}
+.display-intro { padding: 8px 4px; }
+.display-intro h2 { font-size: 1.5rem; letter-spacing: -0.04em; margin-top: 5px; }
+.display-intro > p:last-child { color: var(--text-muted); font-size: 0.82rem; margin-top: 8px; max-width: 400px; }
+.metric-card {
+    background: rgba(255, 255, 255, 0.93);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 128px;
+    padding: 20px;
+}
+.metric-card-accent { background: #effbf5; border-color: #c8efdc; }
+.metric-label { color: var(--text-muted); font-size: 0.72rem; font-weight: 700; }
+.metric-card strong { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; letter-spacing: -0.06em; line-height: 1; margin: 12px 0 8px; }
+.metric-meta { color: var(--text-muted); font-size: 0.68rem; }
 .container > .card { animation: slide-up 0.55s ease both; padding: 30px; }
 .table-header { align-items: center; margin-bottom: 22px; }
 .table-header h3 { font-family: 'Space Grotesk', sans-serif; }
@@ -815,6 +841,8 @@ select {
     .table-toolbar { align-items: stretch; flex-direction: column; }
     .search-box { max-width: none; }
     .container { padding: 18px 16px 36px; }
+    .display-overview { grid-template-columns: 1fr 1fr; }
+    .display-intro { grid-column: 1 / -1; }
     .container > .card { padding: 20px 16px; }
     .table-header { align-items: flex-start; flex-direction: column; }
     .recent-item-time { display: none; }

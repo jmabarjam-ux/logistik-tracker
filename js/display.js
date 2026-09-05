@@ -31,6 +31,8 @@ async function init() {
     const confirmDeleteBtn = document.getElementById('confirm-delete');
     const deleteNamaLogistik = document.getElementById('delete-nama-logistik');
     const searchInput = document.getElementById('search-input');
+    const totalCount = document.getElementById('total-count');
+    const todayCount = document.getElementById('today-count');
 
     let channel = null;
     let deleteTargetId = null;
@@ -50,6 +52,7 @@ async function init() {
             if (error) throw error;
 
             allData = data || [];
+            updateMetrics();
             renderTable(allData);
             setupSearch();
         } catch (error) {
@@ -138,6 +141,7 @@ async function init() {
 
     function addRow(item) {
         allData.unshift(item);
+        updateMetrics();
         emptyState.style.display = 'none';
         const rowCount = tableBody.children.length + 1;
         const row = document.createElement('tr');
@@ -374,6 +378,7 @@ async function init() {
 
         // Remove from allData
         allData = allData.filter(d => d.id !== id);
+        updateMetrics();
 
         row.style.animation = 'fadeOut 0.3s ease';
         setTimeout(() => {
@@ -398,6 +403,20 @@ async function init() {
         } else {
             connectionStatus.classList.add('connecting');
             connectionStatus.textContent = 'Menghubungkan...';
+        }
+    }
+
+    function updateMetrics() {
+        if (totalCount) totalCount.textContent = allData.length;
+        if (todayCount) {
+            const now = new Date();
+            const count = allData.filter(item => {
+                const date = new Date(item.created_at);
+                return date.getFullYear() === now.getFullYear()
+                    && date.getMonth() === now.getMonth()
+                    && date.getDate() === now.getDate();
+            }).length;
+            todayCount.textContent = count;
         }
     }
 
