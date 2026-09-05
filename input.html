@@ -94,94 +94,49 @@
                 </div>
             </header>
 
+<!-- Main Content -->
+        <main class="main-content">
             <!-- Page Content -->
             <div class="page-content">
-                <div class="form-section">
+                <div class="form-section slide-up">
                     <div class="card form-card">
-                        <div class="card-header">
-                            <h2>Form Input Data</h2>
-                            <p>Isi semua field yang wajib diisi (*)</p>
+                        <div class="card-header-modern">
+                            <h2>Input Data Logistik</h2>
+                            <p>Lengkapi formulir di bawah untuk mencatat pengiriman baru</p>
                         </div>
-                        <form id="input-form" class="input-form" novalidate>
-                            <div class="form-row">
+                        <form id="input-form" class="input-form-modern" novalidate>
+                            <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="kode-logistik">
-                                        Kode Logistik <span class="required">*</span>
-                                    </label>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                        </svg>
-                                        <input type="text" id="kode-logistik" name="kode_logistik" required placeholder="Contoh: LG001" autocomplete="off">
-                                    </div>
-                                    <span class="field-hint">Kode unik pengiriman (misal: LG001, LG002)</span>
+                                    <label for="kode-logistik">Kode Logistik</label>
+                                    <input type="text" id="kode-logistik" name="kode_logistik" required placeholder="Contoh: LG001">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nama-logistik">
-                                        Nama Logistik <span class="required">*</span>
-                                    </label>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                            <circle cx="12" cy="7" r="4"/>
-                                        </svg>
-                                        <input type="text" id="nama-logistik" name="nama_logistik" required placeholder="Contoh: CV. Jaya Abadi" autocomplete="off">
-                                    </div>
-                                    <span class="field-hint">Nama perusahaan/perusahaan pengiriman</span>
+                                    <label for="nama-logistik">Nama Logistik</label>
+                                    <input type="text" id="nama-logistik" name="nama_logistik" required placeholder="Contoh: CV. Jaya Abadi">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nopol-kendaraan">
-                                    No. Polisi Kendaraan <span class="required">*</span>
-                                </label>
-                                <div class="input-wrapper">
-                                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-                                        <circle cx="7" cy="17" r="2"/>
-                                        <circle cx="17" cy="17" r="2"/>
-                                    </svg>
-                                    <input type="text" id="nopol-kendaraan" name="nopol_kendaraan" required placeholder="Contoh: B 1234 ABC" autocomplete="off" style="text-transform: uppercase;">
-                                </div>
-                                <span class="field-hint">Format: B 1234 ABC (akan diubah ke uppercase otomatis)</span>
+                                <label for="nopol-kendaraan">No. Polisi</label>
+                                <input type="text" id="nopol-kendaraan" name="nopol_kendaraan" required placeholder="B 1234 ABC">
                             </div>
                             <div class="form-group">
-                                <label for="ukuran-ayam">
-                                    Ukuran Ayam <span class="required">*</span>
-                                </label>
-                                <div class="select-wrapper">
-                                    <svg class="select-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="6 9 12 15 18 9"/>
-                                    </svg>
-                                    <select id="ukuran-ayam" name="ukuran_ayam" required>
-                                        <option value="">-- Pilih Grade --</option>
-                                        <option value="Grade 1 (1.2-1.5kg)">Grade 1 (1.2-1.5 kg)</option>
-                                        <option value="Grade 2 (1.5-1.8kg)">Grade 2 (1.5-1.8 kg)</option>
-                                        <option value="Grade 3 (1.8-2kg)">Grade 3 (1.8-2 kg)</option>
-                                    </select>
-                                </div>
-                                <span class="field-hint">Grade 1: 1.2-1.5 kg | Grade 2: 1.5-1.8 kg | Grade 3: 1.8-2 kg</span>
+                                <label for="ukuran-ayam">Ukuran Ayam</label>
+                                <select id="ukuran-ayam" name="ukuran_ayam" required>
+                                    <option value="">-- Pilih Grade --</option>
+                                    <option value="Grade 1 (1.2-1.5kg)">Grade 1 (1.2-1.5 kg)</option>
+                                    <option value="Grade 2 (1.5-1.8kg)">Grade 2 (1.5-1.8 kg)</option>
+                                    <option value="Grade 3 (1.8-2kg)">Grade 3 (1.8-2 kg)</option>
+                                </select>
                             </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" id="submit-btn">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                                        <polyline points="17 21 17 13 7 13 7 21"/>
-                                        <polyline points="7 3 7 8 15 8"/>
-                                    </svg>
-                                    <span>Simpan Data</span>
-                                </button>
-                                <button type="reset" class="btn btn-secondary" id="reset-btn">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="1 4 1 10 7 10"/>
-                                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                                    </svg>
-                                    <span>Reset</span>
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit-btn">
+                                <span>Simpan Data</span>
+                            </button>
                         </form>
-                        <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
+                        <div id="form-message" class="form-message"></div>
                     </div>
                 </div>
+            </div>
+        </main>
 
                 <!-- Recent Data Section -->
                 <div class="recent-section">
