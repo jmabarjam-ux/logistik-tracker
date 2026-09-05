@@ -25,6 +25,16 @@ Aplikasi sederhana untuk pencatatan data logistik ayam dengan **Supabase** sebag
 4. Buka **Database** → **Replication** → Enable Realtime untuk tabel `logistik_data`
 5. Copy **Project URL** dan **anon/public key** dari **Settings** → **API**
 
+## Monitor Bongkar Publik
+
+Halaman `monitor bongkar.html` tidak memerlukan login dan menampilkan dua truk terdepan dari antrean bongkar. Jalankan ulang bagian `supabase-setup.sql` agar kolom `status_bongkar` dan policy baca publik tersedia.
+
+Status antrean dapat diubah oleh user login melalui halaman **Data Pengiriman**:
+
+- `antri` - menunggu giliran
+- `bongkar` - sedang dibongkar
+- `selesai` - sudah selesai dan keluar dari antrean publik
+
 ## Konfigurasi Project
 
 Edit file `js/supabase-client.js`:

@@ -186,7 +186,7 @@ async function init() {
         try {
             const { data, error } = await supabase
                 .from('logistik_data')
-                .select('id, kode_logistik, nama_logistik, nopol_kendaraan, ukuran_ayam')
+                .select('id, kode_logistik, nama_logistik, nopol_kendaraan, ukuran_ayam, status_bongkar')
                 .eq('id', id)
                 .single();
 
@@ -197,6 +197,7 @@ async function init() {
             document.getElementById('edit-nama-logistik').value = data.nama_logistik;
             document.getElementById('edit-nopol-kendaraan').value = data.nopol_kendaraan;
             document.getElementById('edit-ukuran-ayam').value = data.ukuran_ayam;
+            document.getElementById('edit-status-bongkar').value = data.status_bongkar || 'antri';
             editMessage.textContent = '';
             editMessage.className = 'form-message';
 
@@ -242,7 +243,8 @@ async function init() {
             kode_logistik: formData.get('kode_logistik').trim(),
             nama_logistik: formData.get('nama_logistik').trim(),
             nopol_kendaraan: formData.get('nopol_kendaraan').trim().toUpperCase(),
-            ukuran_ayam: formData.get('ukuran_ayam')
+            ukuran_ayam: formData.get('ukuran_ayam'),
+            status_bongkar: formData.get('status_bongkar')
         };
 
         if (!data.kode_logistik || !data.nama_logistik || !data.nopol_kendaraan || !data.ukuran_ayam) {

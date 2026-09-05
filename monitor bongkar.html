@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Bongkar - Monitoring Truck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="monitor-page">
+    <header class="monitor-header">
+        <a class="monitor-brand" href="index.html" aria-label="Monitoring Truck">
+            <span class="brand-mark">M</span>
+            <span>MONITORING TRUCK</span>
+        </a>
+        <div class="monitor-live"><span></span> Live queue</div>
+    </header>
+
+    <main class="monitor-main">
+        <section class="monitor-hero">
+            <div>
+                <p class="section-kicker">Public operations board</p>
+                <h1>Monitor Bongkar</h1>
+                <p>Lihat dua truk terdepan yang masuk ke proses bongkar muatan.</p>
+            </div>
+            <div class="monitor-rule" aria-hidden="true"></div>
+        </section>
+
+        <section class="monitor-panel monitor-active-panel" aria-labelledby="active-title">
+            <div class="monitor-panel-header">
+                <div>
+                    <p class="section-kicker">Batch aktif</p>
+                    <h2 id="active-title">Siap dibongkar</h2>
+                </div>
+                <span class="batch-label">2 TRUK / BATCH</span>
+            </div>
+            <div id="active-trucks" class="monitor-truck-grid">
+                <div class="monitor-loading"><span class="spinner"></span> Memuat antrean...</div>
+            </div>
+        </section>
+
+        <section class="monitor-panel monitor-queue-panel" aria-labelledby="queue-title">
+            <div class="monitor-panel-header">
+                <div>
+                    <p class="section-kicker">Urutan kedatangan</p>
+                    <h2 id="queue-title">Antrian berikutnya</h2>
+                </div>
+                <span id="queue-count" class="queue-count">0 truk</span>
+            </div>
+            <ol id="queue-list" class="monitor-queue-list"></ol>
+            <div id="monitor-message" class="monitor-message" role="status" aria-live="polite"></div>
+        </section>
+
+        <p class="monitor-updated">Data diperbarui otomatis saat status antrean berubah.</p>
+    </main>
+
+    <script type="module" src="js/monitor-bongkar.js"></script>
+</body>
+</html>

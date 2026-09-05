@@ -13,8 +13,20 @@ CREATE TABLE logistik_data (
         'Grade 3 (1.8-2kg)'
     )),
     created_by UUID REFERENCES auth.users(id),
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    status_bongkar TEXT NOT NULL DEFAULT 'antri' CHECK (status_bongkar IN ('antri', 'bongkar', 'selesai'))
 );
+
+-- Migration aman untuk project yang sudah memiliki tabel logistik_data
+ALTER TABLE logistik_data
+    ADD COLUMN IF NOT EXISTS status_bongkar TEXT NOT NULL DEFAULT 'antri';
+
+ALTER TABLE logistik_data
+    DROP CONSTRAINT IF EXISTS logistik_data_status_bongkar_check;
+
+ALTER TABLE logistik_data
+    ADD CONSTRAINT logistik_data_status_bongkar_check
+    CHECK (status_bongkar IN ('antri', 'bongkar', 'selesai'));
 
 -- 2. Enable Row Level Security (RLS)
 ALTER TABLE logistik_data ENABLE ROW LEVEL SECURITY;
@@ -28,6 +40,11 @@ CREATE POLICY "Authenticated users can insert" ON logistik_data
 CREATE POLICY "Authenticated users can read" ON logistik_data
     FOR SELECT TO authenticated
     USING (true);
+
+-- Public monitor hanya bisa membaca data yang masih berada di antrean
+CREATE POLICY "Public monitor can read queue" ON logistik_data
+    FOR SELECT TO anon
+    USING (status_bongkar = 'antri');
 
 -- 5. Policy: Users can update their own data (optional)
 CREATE POLICY "Users can update own data" ON logistik_data
@@ -47,6 +64,7 @@ ALTER PUBLICATION supabase_realtime ADD TABLE logistik_data;
 CREATE INDEX idx_logistik_data_created_at ON logistik_data(created_at DESC);
 CREATE INDEX idx_logistik_data_created_by ON logistik_data(created_by);
 CREATE INDEX idx_logistik_data_nama_logistik ON logistik_data(nama_logistik);
+CREATE INDEX idx_logistik_data_status_bongkar_created_at ON logistik_data(status_bongkar, created_at);
 
 -- 9. (Opsional) Enable RLS pada auth.users untuk keamanan tambahan
 -- ALTER TABLE auth.users ENABLE ROW LEVEL SECURITY;
