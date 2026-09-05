@@ -31,9 +31,9 @@
     <script type="module" src="js/auth.js"></script>
     <script type="module">
         import { signIn, signUp } from './js/auth.js';
-        import { requireAuth } from './js/router.js';
+        // import { requireAuth } from './js/router.js'; // TIDAK DIPERLUKAN di login page
 
-        requireAuth();
+        // requireAuth(); // HAPUS: ini menyebabkan loop di halaman login
 
         const form = document.getElementById('login-form');
         const messageEl = document.getElementById('auth-message');
