@@ -2,7 +2,7 @@ import { supabase } from './supabase-client.js';
 
 export async function signIn(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: normalizeEmail(email),
         password
     });
     if (error) throw error;
@@ -11,7 +11,7 @@ export async function signIn(email, password) {
 
 export async function signUp(email, password) {
     const { data, error } = await supabase.auth.signUp({
-        email,
+        email: normalizeEmail(email),
         password
     });
     if (error) throw error;
@@ -68,4 +68,9 @@ export function setupLogout() {
             }
         });
     }
+}
+
+function normalizeEmail(email) {
+    const value = email.trim().toLowerCase();
+    return value === 'admin' ? 'admin@logistik-tracker.local' : value;
 }

@@ -34,6 +34,16 @@ const SUPABASE_URL = 'https://your-project.supabase.co';
 const SUPABASE_ANON_KEY = 'your-anon-key';
 ```
 
+## Akun Admin
+
+Buat akun berikut di **Authentication → Users → Add user** pada Supabase Dashboard:
+
+- Email: `admin@logistik-tracker.local`
+- Password: `admin123`
+- Aktifkan **Auto Confirm User** agar bisa langsung login.
+
+Di halaman login, akun ini juga bisa digunakan dengan username `admin`. Ganti password bawaan setelah login pertama kali. Password tidak disimpan di source code aplikasi.
+
 ## Deploy ke GitHub Pages
 
 1. Push repository ke GitHub

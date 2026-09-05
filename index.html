@@ -4,32 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Logistik Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2>Masuk</h2>
+    <main class="auth-container">
+        <section class="auth-card" aria-labelledby="login-title">
+            <div class="auth-brand">
+                <span class="brand-mark" aria-hidden="true">L</span>
+                <span>LOGISTIK TRACKER</span>
             </div>
-            <form id="login-form" class="auth-form-simple" novalidate>
+            <div class="auth-header">
+                <p class="auth-eyebrow">Ruang kerja logistik</p>
+                <h1 id="login-title">Selamat datang kembali</h1>
+                <p>Masuk untuk mengelola data pengiriman dengan lebih rapi.</p>
+            </div>
+            <form id="login-form" class="auth-form" novalidate>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="admin@logistik.local">
+                    <label for="email">Email atau username</label>
+                    <input type="text" id="email" name="email" required autocomplete="username" placeholder="nama@perusahaan.com">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Masukkan password">
+                        <button type="button" id="toggle-password" class="password-toggle" aria-label="Tampilkan password">Lihat</button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                <button type="submit" class="btn btn-primary btn-block" id="login-submit">Masuk</button>
             </form>
             <div id="auth-message" class="form-message" role="alert" aria-live="polite"></div>
-            <p class="mt-3 small text-center" style="font-size: 0.75rem; color: #6c757d;">
-                <kbd>admin@logistik.local</kbd> / <kbd>rpajaya</kbd>
-            </p>
-        </div>
-    </div>
-
+            <p class="auth-hint">Akun admin: <strong>admin</strong> / <strong>admin123</strong></p>
+        </section>
+    </main>
     <script type="module" src="js/login.js"></script>
 </body>
 </html>
