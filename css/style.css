@@ -1,19 +1,19 @@
 :root {
-    --primary: #2457d6;
-    --primary-dark: #173c9b;
-    --primary-soft: #e8efff;
-    --accent: #f2a93b;
-    --accent-soft: #fff3dc;
-    --bg: #f4f7fb;
+    --primary: #3ecf8e;
+    --primary-dark: #2fa874;
+    --primary-soft: #e7f8f0;
+    --accent: #f3b95f;
+    --accent-soft: #fff4df;
+    --bg: #f7f8fa;
     --surface: #ffffff;
     --surface-muted: #f8fafc;
-    --text: #172033;
-    --text-muted: #748096;
-    --border: #e4e9f2;
+    --text: #1c1c1c;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
     --danger: #d94b5b;
-    --success: #168568;
-    --shadow-sm: 0 8px 24px rgba(25, 47, 91, 0.06);
-    --shadow-lg: 0 24px 70px rgba(25, 47, 91, 0.14);
+    --success: #2fa874;
+    --shadow-sm: 0 8px 24px rgba(28, 28, 28, 0.06);
+    --shadow-lg: 0 24px 70px rgba(28, 28, 28, 0.13);
     --radius: 14px;
     --sidebar-width: 264px;
 }
@@ -37,7 +37,7 @@ body {
 }
 
 body::before {
-    background-image: radial-gradient(rgba(36, 87, 214, 0.11) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(62, 207, 142, 0.12) 1px, transparent 1px);
     background-size: 32px 32px;
     content: '';
     inset: 0;
@@ -392,7 +392,7 @@ select {
 .form-group select:focus,
 .auth-form input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(36, 87, 214, 0.12);
+    box-shadow: 0 0 0 4px rgba(62, 207, 142, 0.16);
 }
 
 .password-field {
@@ -446,8 +446,8 @@ select {
 
 .btn-primary {
     background: var(--primary);
-    box-shadow: 0 8px 18px rgba(36, 87, 214, 0.2);
-    color: #fff;
+    box-shadow: 0 8px 18px rgba(62, 207, 142, 0.22);
+    color: #123b2a;
 }
 
 .btn-primary:hover:not(:disabled) { background: var(--primary-dark); }
@@ -479,7 +479,7 @@ select {
 }
 
 .sidebar {
-    background: #17284a;
+    background: #1c1c1c;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -507,7 +507,7 @@ select {
     gap: 10px;
 }
 
-.logo svg { color: var(--accent); }
+.logo svg { color: var(--primary); }
 .sidebar-toggle,
 .menu-toggle {
     align-items: center;
@@ -537,18 +537,18 @@ select {
 
 .nav-item:hover,
 .nav-item.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(62, 207, 142, 0.13);
     color: #fff;
     text-decoration: none;
     transform: translateX(3px);
 }
 
-.nav-item.active { box-shadow: inset 3px 0 var(--accent); }
+.nav-item.active { box-shadow: inset 3px 0 var(--primary); }
 .nav-item svg { flex: 0 0 auto; }
 .nav-badge {
-    background: rgba(242, 169, 59, 0.14);
+    background: rgba(62, 207, 142, 0.14);
     border-radius: 999px;
-    color: #ffc56f;
+    color: #8ee6bd;
     font-size: 0.64rem;
     margin-left: auto;
     padding: 4px 7px;
@@ -566,9 +566,9 @@ select {
 
 .user-avatar {
     align-items: center;
-    background: var(--accent);
+    background: var(--primary);
     border-radius: 10px;
-    color: #533200;
+    color: #123b2a;
     display: flex;
     flex: 0 0 auto;
     font-weight: 800;
@@ -600,8 +600,8 @@ select {
 
 .top-bar {
     align-items: center;
-    background: rgba(244, 247, 251, 0.86);
-    border-bottom: 1px solid rgba(228, 233, 242, 0.85);
+    background: rgba(247, 248, 250, 0.88);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.9);
     display: flex;
     gap: 18px;
     justify-content: space-between;
